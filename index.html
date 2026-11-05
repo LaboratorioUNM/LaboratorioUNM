@@ -630,7 +630,7 @@ window.LG3D = (function(){
 let T, renderer, scene, camera, controls, clock, key, floorMat, fogColor;
 let root, stage, ui = {}, current = null, ready = false, tex = {}, fly = null;
 const built = {};
-const TEXBASE = "img/tex/";
+const TEXBASE = "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ---------- utilidades ----------
@@ -1665,16 +1665,16 @@ const EI = (id, extra="") => `<svg class="eqi" viewBox="0 0 48 48" aria-hidden="
 const EPP = { g:["glove","Guantes"], c:["coat","Guardapolvo"], a:["goggles","Antiparras"] };
 const EQUIPOS = [
  { id:"phmetro", segu:["Los buffer y las muestras usadas van al bidón, no a la pileta.", "Si te salpica en los ojos: lavaojos 15 minutos."], no:"01", nombre:"pHmetro", sub:"Medición de pH, mV y temperatura", ubic:"Mesada", estado:"Disponible", tiene3d:true,
-   foto:"img/phmetro.jpg", pos:"center 78%",
+   foto:"phmetro.jpg", pos:"center 78%",
    que:"Mide qué tan ácida o básica es una solución a través de un electrodo que se sumerge en la muestra. Antes de medir hay que calibrarlo con soluciones buffer.",
    specs:[["thermo","Mide","pH · mV · °C"],["layers","Modelos","DLAB y Sartorius"],["drop","Antes de medir","Calibrar con buffers"]],
    epp:["g","c","a"], kw:"ph acidez electrodo buffer calibrar dlab sartorius",
    modelos:[
-    { nombre:"DLAB DPH100", foto:"img/phmetro.jpg", video:"vid/phmetro.mp4", poster:"vid/phmetro.jpg", capT:[3.2,9,14.2,18.6,31.2,36.8,43.4,49.6], dur:"59 s",
+    { nombre:"DLAB DPH100", foto:"phmetro.jpg", video:"phmetro.mp4", poster:"portada-phmetro.jpg", capT:[3.2,9,14.2,18.6,31.2,36.8,43.4,49.6], dur:"59 s",
       datos:[["Marca","DLAB"],["Modelo","DPH100 · pHmetro de mesa"],["Mide","pH, mV (ORP) y temperatura"],["Temperatura","Compensación automática (ATC)"],["Pantalla","LCD con mensajes de ayuda"],["Rango y resolución",null],["Ubicación","Mesada · equipo N.° 2"]],
       teclas:[["SET","Entra a la configuración del equipo."],["CAL","Entra al modo calibración."],["▲ ▼","Cambian el modo de medición (pH, mV, temperatura)."],["OK","Confirma."],["SAVE","Guarda la lectura."],["ESC/PRN","Sale del menú o imprime."],["ON/OFF","Enciende y apaga."],["ATC","En pantalla: la temperatura se compensa sola."]],
       pasos:["Encendelo con ON/OFF.","Calibralo: presioná CAL y medí las soluciones buffer, una por una.","Entre una medición y otra, enjuagá el electrodo con agua destilada.","Sumergí el electrodo en la muestra sin que toque el fondo del vaso.","Esperá a que el valor se quede quieto y leé el pH."]},
-    { nombre:"Sartorius PB-11", foto:"img/phmetro-sartorius.jpg", video:"vid/sartorius.mp4", poster:"vid/sartorius.jpg", capT:[3.2, 9, 14.2, 19.2, 31.8, 37.4, 44, 50.2], dur:"60 s",
+    { nombre:"Sartorius PB-11", foto:"phmetro-sartorius.jpg", video:"sartorius.mp4", poster:"portada-sartorius.jpg", capT:[3.2, 9, 14.2, 19.2, 31.8, 37.4, 44, 50.2], dur:"60 s",
       datos:[["Marca","Sartorius"],["Modelo","PB-11"],["Mide","pH y mV"],["Calibración","Con la tecla Standardize"],["Rango y resolución",null],["Ubicación","Mesada"]],
       teclas:[["Mode","Cambia entre pH y mV."],["Setup","Configuración: borrar la calibración (Clear) y elegir el juego de buffers."],["Enter","Confirma."],["Standardize","Calibra: reconoce el buffer y lo guarda cuando la lectura es estable."],["S","En pantalla: la lectura es estable."]],
       pasos:["Verificá que esté enchufado y elegí el modo pH con la tecla Mode.","Borrá la calibración anterior: Setup y Enter.","Con el electrodo en cada buffer, presioná Standardize: se guarda solo cuando la lectura es estable.","Entre una medición y otra, enjuagá el electrodo con agua destilada.","Sumergí el electrodo en la muestra sin que toque el fondo del vaso.","Cuando aparece la S, el valor es estable: anotalo."]}],
@@ -1683,11 +1683,11 @@ const EQUIPOS = [
    caps:["¿Qué es?","Antes de empezar","Encender","Calibrar","Enjuagar","Medir","Leer el resultado","Al terminar"] },
 
  { id:"balanza", segu:["Si pesás polvos tóxicos, usá barbijo descartable.", "Limpiá enseguida lo que se derrame sobre el plato."], no:"02", nombre:"Balanza granataria", sub:"Pesada de reactivos y muestras", ubic:"Mesada", estado:"Disponible", tiene3d:true,
-   foto:"img/balanza.jpg", pos:"center 62%",
+   foto:"balanza.jpg", pos:"center 62%",
    que:"Balanza electrónica de uso general. Siempre se pesa sobre un recipiente, que se descuenta con la tecla de tara.",
    specs:[["scale","Resolución","0,1 g"],["info","Tecla clave","Zero/Tare"],["layers","Modelo","Vibra serie SJ"]],
    epp:["g","c"], kw:"pesar peso gramos tara reactivo vibra",
-   modelos:[{ nombre:"Vibra SJ", video:"vid/balanza.mp4", poster:"vid/balanza.jpg", capT:[3.2, 8.8, 14, 23.2, 32.6], dur:"42 s",
+   modelos:[{ nombre:"Vibra SJ", video:"balanza.mp4", poster:"portada-balanza.jpg", capT:[3.2, 8.8, 14, 23.2, 32.6], dur:"42 s",
       datos:[["Marca","Vibra"],["Modelo","Serie SJ"],["Resolución","0,1 g (según pantalla)"],["Capacidad máxima",null],["Ubicación","Mesada"]],
       teclas:[["On/Off","Enciende y apaga."],["Zero/Tare","Pone la balanza en cero y descuenta el recipiente."],["Memory","Guarda o recupera un valor."],["Set","Entra a la configuración."],["Function","Cambia de función o unidad."],["HI · OK · LO","Indican si el peso está arriba, dentro o abajo de un valor objetivo."]],
       pasos:["Verificá que el plato esté limpio y seco.","Encendela con On/Off y esperá que marque 0.0 g.","Colocá el recipiente vacío y presioná Zero/Tare.","Agregá la sustancia de a poco.","Esperá que el valor se estabilice y anotalo."]}],
@@ -1696,11 +1696,11 @@ const EQUIPOS = [
    caps:["¿Qué es?","Antes de empezar","Tarar","Pesar","Al terminar"] },
 
  { id:"destilador", segu:["Trabajá siempre dentro de la campana.", "Nunca calientes un sistema cerrado.", "Si te quemás con el manto: agua fría de 10 a 15 minutos."], no:"03", nombre:"Destilador", sub:"Separación de líquidos por ebullición", ubic:"Campana", estado:"Disponible", tiene3d:true,
-   foto:"img/destilador.jpg",
+   foto:"destilador.jpg",
    que:"Montaje de varias piezas que se arma dentro de la campana de extracción: manto calefactor, balón, termómetro, refrigerante con mangueras, soporte con pinzas y recipiente colector.",
    specs:[["pin","Dónde","Campana de extracción"],["flame","Calor","Manto calefactor"],["drop","Refrigeración","Circulación de agua"]],
    epp:["g","c","a"], kw:"destilacion destilar refrigerante manto balon campana",
-   modelos:[{ nombre:"Destilación simple", video:"vid/destilador.mp4", poster:"vid/destilador.jpg", capT:[3.2, 9.8, 15.4, 25.8, 36.6], dur:"47 s",
+   modelos:[{ nombre:"Destilación simple", video:"destilador.mp4", poster:"portada-destilador.jpg", capT:[3.2, 9.8, 15.4, 25.8, 36.6], dur:"47 s",
       datos:[["Tipo","Destilación simple"],["Calor","Manto calefactor"],["Refrigeración","Refrigerante con circulación de agua"],["Dónde","Dentro de la campana de extracción"],["Piezas","Balón, termómetro, refrigerante, soporte, pinzas y colector"]],
       teclas:[["POWER","Luz de encendido del manto."],["Perilla","Regula la potencia del manto."]],
       pasos:["Armá el montaje dentro de la campana y ajustá las pinzas.","Agregá piedras de ebullición al balón.","Conectá las mangueras: el agua entra por abajo del refrigerante y sale por arriba.","Abrí el agua antes de encender el manto.","Encendé el manto y controlá la temperatura en el termómetro."]}],
@@ -1709,11 +1709,11 @@ const EQUIPOS = [
    caps:["¿Qué es?","Antes de empezar","Armar","Destilar","Al terminar"] },
 
  { id:"microscopio", segu:["Si se rompe un portaobjetos, envolvelo en papel y llevalo a la caja de vidrio.", "Antes de limpiar con alcohol, fijate que no haya mecheros encendidos."], no:"04", nombre:"Microscopio óptico", sub:"Observación de muestras con aumento", ubic:"Mesada", estado:"Disponible", tiene3d:true,
-   foto:"img/microscopio.jpg", pos:"center 72%",
+   foto:"microscopio.jpg", pos:"center 72%",
    que:"Microscopio binocular para observar preparados. Se empieza siempre con el menor aumento y se enfoca de a poco.",
    specs:[["eye","Objetivos","4x · 10x · 40x · 100x"],["layers","Ocular","10x"],["search","Aumento total","Hasta 1000x"]],
    epp:["g","c"], kw:"microscopio lente aumento enfocar preparado celulas objetivo",
-   modelos:[{ nombre:"Arcano binocular", video:"vid/microscopio.mp4", poster:"vid/microscopio.jpg", capT:[3.2, 9.2, 17.2, 28.6, 38.8], dur:"48 s",
+   modelos:[{ nombre:"Arcano binocular", video:"microscopio.mp4", poster:"portada-microscopio.jpg", capT:[3.2, 9.2, 17.2, 28.6, 38.8], dur:"48 s",
       datos:[["Marca","Arcano"],["Tipo","Microscopio óptico binocular"],["Objetivos","4x a 100x"],["Ocular","10x"],["Iluminación","Luz en la base"]],
       teclas:[["Oculares","Por donde mirás."],["Revólver","Gira para cambiar de objetivo."],["Macrométrico","Tornillo grande: enfoque grueso."],["Micrométrico","Tornillo chico: enfoque fino."],["Platina","Donde se apoya el preparado."],["Condensador","Concentra la luz sobre la muestra."]],
       pasos:["Encendé la luz.","Colocá el preparado en la platina y sujetalo con las pinzas.","Empezá con el objetivo de menor aumento (4x).","Enfocá con el macrométrico y ajustá con el micrométrico.","Para más aumento, girá el revólver y reenfocá con el micrométrico."]}],
@@ -1722,11 +1722,11 @@ const EQUIPOS = [
    caps:["¿Qué es?","Partes","Enfocar","Cambiar de objetivo","Al terminar"] },
 
  { id:"agitador", segu:["Nunca calientes un recipiente cerrado.", "No apuntes la boca del recipiente hacia nadie.", "Si te quemás con la placa: agua fría de 10 a 15 minutos."], no:"05", nombre:"Agitador magnético con placa calefactora", corto:"Agitador magnético", sub:"Calentar y mezclar soluciones", ubic:"Mesada", estado:"Disponible", tiene3d:true,
-   foto:"img/agitador.jpg", pos:"center 66%",
+   foto:"agitador.jpg", pos:"center 66%",
    que:"Hace girar un buzo magnético dentro del recipiente y, si hace falta, calienta la placa. La placa sigue caliente un rato después de apagarla.",
    specs:[["thermo","Temperatura","0 a 100 °C"],["speed","Velocidad","Slow – Fast"],["layers","Modelo","Arcano 78HW-1"]],
    epp:["g","c","a"], kw:"agitador placa calefactora buzo magnetico calentar mezclar",
-   modelos:[{ nombre:"Arcano 78HW-1", video:"vid/agitador.mp4", poster:"vid/agitador.jpg", capT:[3.2, 9.4, 16.6, 26.2, 35.4], dur:"45 s",
+   modelos:[{ nombre:"Arcano 78HW-1", video:"agitador.mp4", poster:"portada-agitador.jpg", capT:[3.2, 9.4, 16.6, 26.2, 35.4], dur:"45 s",
       datos:[["Marca","Arcano"],["Modelo","78HW-1"],["Temperatura","Regulable de 0 a 100 °C"],["Velocidad","Regulable (Slow – Fast)"],["Conexión","Entrada para sensor de temperatura"]],
       teclas:[["OFF/ON","Llave de encendido."],["Slow – Fast","Perilla de velocidad de agitación."],["°C","Perilla de temperatura."],["POWER","Luz: el equipo está encendido."],["HEAT","Luz: la placa está calentando."],["THERMOSTAT","Luz: se alcanzó la temperatura."]],
       pasos:["Colocá el recipiente en el centro de la placa, con el buzo adentro.","Encendé con la llave OFF/ON.","Subí la velocidad de a poco con la perilla Slow – Fast.","Si necesitás calentar, girá la perilla de temperatura."]}],
@@ -1748,10 +1748,10 @@ const EQUIPOS = [
    caps:["¿Qué es?","Cargar","Descargar","Al terminar"] },
 ];
 const SEG = [
-  { id:"normas", icon:"shield", t:"Normas del laboratorio", d:"Lo básico antes de cualquier práctica", video:"vid/normas.mp4", poster:"vid/normas.jpg" },
-  { id:"residuos", icon:"waste", t:"Manejo de residuos", d:"Qué va en cada bolsa y en el bidón", video:"vid/residuos.mp4", poster:"vid/residuos.jpg" },
-  { id:"accidentes", icon:"alert", t:"Qué hacer ante un accidente", d:"Quemaduras, cortes, piel y ojos", video:"vid/accidentes.mp4", poster:"vid/accidentes.jpg" },
-  { id:"incendio", icon:"flame", t:"Incendio y evacuación", d:"Avisar, apagar o salir", video:"vid/incendio.mp4", poster:"vid/incendio.jpg" },
+  { id:"normas", icon:"shield", t:"Normas del laboratorio", d:"Lo básico antes de cualquier práctica", video:"normas.mp4", poster:"portada-normas.jpg" },
+  { id:"residuos", icon:"waste", t:"Manejo de residuos", d:"Qué va en cada bolsa y en el bidón", video:"residuos.mp4", poster:"portada-residuos.jpg" },
+  { id:"accidentes", icon:"alert", t:"Qué hacer ante un accidente", d:"Quemaduras, cortes, piel y ojos", video:"accidentes.mp4", poster:"portada-accidentes.jpg" },
+  { id:"incendio", icon:"flame", t:"Incendio y evacuación", d:"Avisar, apagar o salir", video:"incendio.mp4", poster:"portada-incendio.jpg" },
 ];
 const AVISAR = [ ["teacher","Docente","Siempre primero"], ["phone","Enfermería","Interno 101"], ["phone","Bienestar Universitario","Interno 126"], ["phone","Limpieza y mantenimiento","Interno 153 · derrames"] ];
 const NORMAS = [
@@ -1858,7 +1858,7 @@ function viewInicio(){
           <a class="tile hi" href="#3d">${I("cube")}Explorar 3D</a>
         </div>
       </div>
-      <div class="photo brk"><img src="img/lab.jpg" alt="Laboratorio de Ciencias de la UNM con sus mesadas de trabajo"></div>
+      <div class="photo brk"><img src="lab.jpg" alt="Laboratorio de Ciencias de la UNM con sus mesadas de trabajo"></div>
     </div>
   </section>
 
@@ -2097,7 +2097,7 @@ function render(keep){
   const id = (location.hash || "#inicio").slice(1) || "inicio";
   if(id.startsWith("v-")){ const k = id.slice(2);
     if(SEG.some(x => x.id === k)){ pendingPlay = "sv-" + k; location.replace("#seguridad"); return; }
-    for(const q of EQUIPOS){ const i = q.modelos.findIndex(m => m.video === "vid/" + k + ".mp4"); if(i >= 0){ pendingPlay = "fv"; pendingModel = i; location.replace("#" + q.id); return; } }
+    for(const q of EQUIPOS){ const i = q.modelos.findIndex(m => m.video === k + ".mp4"); if(i >= 0){ pendingPlay = "fv"; pendingModel = i; location.replace("#" + q.id); return; } }
   }
   const e = byId(id);
   $("#mob").classList.remove("open"); $("#dd").classList.remove("open");
